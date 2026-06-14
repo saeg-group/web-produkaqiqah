@@ -339,9 +339,11 @@
     </div>
 
     <script>
+        const DEFAULT_API_URL = "https://script.google.com/macros/s/AKfycbyUyl-KwZyZmCBaZihSsq7ulrcqS2bKJdqZZ3rnE_LoEi034fYzkRuyYb6vVMZicj7F/exec";
+
         // Load configuration on start
         document.addEventListener('DOMContentLoaded', () => {
-            const savedUrl = localStorage.getItem('sae_b2c_api_url') || '';
+            const savedUrl = localStorage.getItem('sae_b2c_api_url') || DEFAULT_API_URL;
             const savedPass = localStorage.getItem('sae_b2c_api_password') || '';
             
             document.getElementById('api-url').value = savedUrl;

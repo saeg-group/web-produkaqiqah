@@ -148,9 +148,11 @@ window.submitOrder = function() {
     window.open("https://wa.me/" + WA_NUMBER + "?text=" + msg, "_blank");
 };
 
+const B2C_API_URL = "https://script.google.com/macros/s/AKfycbyUyl-KwZyZmCBaZihSsq7ulrcqS2bKJdqZZ3rnE_LoEi034fYzkRuyYb6vVMZicj7F/exec";
+
 // 5. Dynamic Price Loading
 function loadPrices() {
-    const apiURL = localStorage.getItem('sae_b2c_api_url');
+    const apiURL = localStorage.getItem('sae_b2c_api_url') || B2C_API_URL;
     
     // 1. Try to load from LocalStorage cache first
     const cachedData = localStorage.getItem('sae_b2c_prices_cache');
