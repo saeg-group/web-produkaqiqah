@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Update Harga SAE Aqiqah</title>
+    <!-- Google Fonts: Playfair Display for headers, Outfit for UI -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --black-soft: #121212;
+            --dark-gray: #1a1a1a;
+            --red: #c41e3a;
+            --red-dark: #9e1730;
+            --gold: #b8952a;
+            --gold-light: #d4aa3c;
+            --white: #ffffff;
+            --gray: #888888;
+            --gray-light: #cccccc;
+            --font-display: "Playfair Display", Georgia, serif;
+            --font-body: "Outfit", sans-serif;
+            --border-radius: 4px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        /* Noise texture overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.3;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(184, 149, 42, 0.2);
+            padding-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 900;
+        }
+
+        .logo span {
+            color: var(--red);
+        }
+
+        .badge {
+            background: rgba(184, 149, 42, 0.15);
+            border: 1px solid rgba(184, 149, 42, 0.3);
+            color: var(--gold-light);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card {
+            background: var(--black-soft);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 3px solid var(--gold);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i {
+            color: var(--gold);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-light);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            padding: 10px 14px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.2s;
+            border-radius: var(--border-radius);
+        }
+
+        input:focus {
+            border-color: var(--gold);
+            background: rgba(184, 149, 42, 0.04);
+        }
+
+        .btn {
+            background-color: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 12px 24px;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: var(--border-radius);
+        }
+
+        .btn:hover {
+            background-color: var(--gold-light);
+            transform: translateY(-1px);
+        }
+
+        .btn-red {
+            background-color: var(--red);
+            color: var(--white);
+        }
+
+        .btn-red:hover {
+            background-color: var(--red-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: var(--white);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            background-color: rgba(184, 149, 42, 0.1);
+            border-bottom: 2px solid rgba(184, 149, 42, 0.3);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 14px 16px;
+        }
+
+        td {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 12px 16px;
+            vertical-align: middle;
+        }
+
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .col-id { font-weight: 700; color: var(--gold-light); width: 80px; }
+        .col-name { font-weight: 600; width: 150px; }
+        .col-price { width: 140px; }
+        .col-desc { width: auto; }
+        .col-action { width: 120px; text-align: center; }
+
+        .price-input {
+            width: 110px;
+        }
+
+        .desc-input {
+            width: 100%;
+        }
+
+        /* Logs / Status */
+        .log-box {
+            background-color: #050505;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            max-height: 120px;
+            overflow-y: auto;
+            color: #4af626;
+            margin-bottom: 20px;
+        }
+
+        .log-entry {
+            margin-bottom: 4px;
+        }
+
+        .log-error { color: #f62626; }
+        .log-warn { color: #f6b826; }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray);
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--white);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Kembali ke Website Utama</a>
+            <div class="logo">SAE <span>AQIQAH</span> B2C</div>
+            <div class="badge">CMS Dashboard</div>
+        </header>
+
+        <!-- API Configuration Card -->
+        <div class="card">
+            <h3 class="card-title"><i class="fa-solid fa-gears"></i> Konfigurasi API Google Drive</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="api-url">Google Apps Script Web App URL *</label>
+                    <input type="url" id="api-url" placeholder="https://script.google.com/macros/s/XXXXXX/exec" required>
+                </div>
+                <div class="form-group">
+                    <label for="api-password">API Password *</label>
+                    <div style="position: relative; display: flex; align-items: center;">
+                        <input type="password" id="api-password" placeholder="Password di Apps Script Anda" required style="padding-right: 40px; width: 100%;">
+                        <button type="button" id="toggle-password-btn" style="position: absolute; right: 10px; background: none; border: none; color: var(--gray); cursor: pointer; display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-eye" id="toggle-password-icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 10px; display: flex; gap: 10px;">
+                <button class="btn" onclick="saveConfig()">Simpan Konfigurasi</button>
+                <button class="btn btn-outline" onclick="testConnection()"><i class="fa-solid fa-circle-nodes"></i> Hubungkan Data</button>
+            </div>
+        </div>
+
+        <!-- System Log Box -->
+        <div class="log-box" id="log-panel">
+            <div class="log-entry">Sistem siap. Silakan lengkapi Konfigurasi API Google Sheets di atas, klik "Simpan Konfigurasi", lalu klik "Hubungkan Data" untuk memuat daftar harga.</div>
+        </div>
+
+        <!-- Prices Table Card -->
+        <div class="card" id="prices-card" style="display: none;">
+            <h3 class="card-title"><i class="fa-solid fa-table-list"></i> Kelola Harga Paket B2C (Aqiqah & Qurban)</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="col-id">ID</th>
+                            <th class="col-name">Nama Produk</th>
+                            <th class="col-price">Harga Dasar (Rp)</th>
+                            <th class="col-price">Harga + Nasi (Rp)</th>
+                            <th class="col-desc">Deskripsi Porsi / Keterangan</th>
+                            <th class="col-action">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="prices-table-body">
+                        <!-- Dimuat secara dinamis -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load configuration on start
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedUrl = localStorage.getItem('sae_b2c_api_url') || '';
+            const savedPass = localStorage.getItem('sae_b2c_api_password') || '';
+            
+            document.getElementById('api-url').value = savedUrl;
+            document.getElementById('api-password').value = savedPass;
+
+            // Password show/hide toggle logic
+            const togglePasswordBtn = document.getElementById('toggle-password-btn');
+            const apiPasswordInput = document.getElementById('api-password');
+            const togglePasswordIcon = document.getElementById('toggle-password-icon');
+
+            if (togglePasswordBtn && apiPasswordInput && togglePasswordIcon) {
+                togglePasswordBtn.addEventListener('click', () => {
+                    const isPassword = apiPasswordInput.type === 'password';
+                    apiPasswordInput.type = isPassword ? 'text' : 'password';
+                    togglePasswordIcon.className = isPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+                });
+            }
+
+            if (savedUrl && savedPass) {
+                addLog("Konfigurasi tersimpan ditemukan. Menghubungkan secara otomatis...");
+                testConnection();
+            }
+        });
+
+        function addLog(message, type = 'info') {
+            const panel = document.getElementById('log-panel');
+            const entry = document.createElement('div');
+            entry.classList.add('log-entry');
+            if (type === 'error') entry.classList.add('log-error');
+            if (type === 'warn') entry.classList.add('log-warn');
+            
+            const time = new Date().toLocaleTimeString();
+            entry.textContent = `[${time}] ${message}`;
+            panel.appendChild(entry);
+            panel.scrollTop = panel.scrollHeight;
+        }
+
+        function saveConfig() {
+            const url = document.getElementById('api-url').value.trim();
+            const pass = document.getElementById('api-password').value.trim();
+
+            if (!url) {
+                alert("Mohon masukkan Web App URL Google Apps Script");
+                return;
+            }
+            if (!pass) {
+                alert("Mohon masukkan API Password");
+                return;
+            }
+
+            localStorage.setItem('sae_b2c_api_url', url);
+            localStorage.setItem('sae_b2c_api_password', pass);
+            addLog("Konfigurasi API berhasil disimpan ke penyimpanan lokal browser.", "warn");
+            alert("Konfigurasi API berhasil disimpan!");
+        }
+
+        function testConnection() {
+            const url = document.getElementById('api-url').value.trim();
+            if (!url) {
+                addLog("URL API kosong. Gagal memuat data.", "error");
+                return;
+            }
+
+            addLog("Menghubungkan ke Google Sheets API... (Mengambil tab aqiqah_prices)");
+            
+            // Fetch GET request
+            fetch(`${url}?sheet=aqiqah_prices`)
+                .then(res => {
+                    if (!res.ok) throw new Error("Jaringan bermasalah, silakan periksa status deployment Apps Script Anda");
+                    return res.json();
+                })
+                .then(data => {
+                    if (data.error) {
+                        throw new Error(data.error);
+                    }
+                    addLog(`Koneksi berhasil! Memuat ${data.length} komoditas harga.`);
+                    renderPricesTable(data);
+                })
+                .catch(err => {
+                    addLog(`Error: ${err.message}`, "error");
+                    addLog("Pastikan Web App Apps Script dideploy dengan akses 'Anyone' dan URL sudah benar.", "warn");
+                });
+        }
+
+        function renderPricesTable(data) {
+            const tbody = document.getElementById('prices-table-body');
+            tbody.innerHTML = '';
+
+            data.forEach(item => {
+                const tr = document.createElement('tr');
+                
+                // Cek apakah produk memiliki harga nasi box
+                const hasNasi = item.priceWithNasi !== undefined && item.priceWithNasi !== null && item.priceWithNasi !== "" && item.priceWithNasi !== "0" && item.priceWithNasi !== 0;
+                const priceWithNasiVal = hasNasi ? item.priceWithNasi : 0;
+                const nasiDisabled = hasNasi ? '' : 'disabled';
+
+                tr.innerHTML = `
+                    <td class="col-id">${item.id}</td>
+                    <td class="col-name">${item.name}</td>
+                    <td class="col-price">
+                        <input type="number" class="price-input" id="base-${item.id}" value="${item.basePrice || 0}">
+                    </td>
+                    <td class="col-price">
+                        <input type="number" class="price-input" id="nasi-${item.id}" value="${priceWithNasiVal}" ${nasiDisabled}>
+                    </td>
+                    <td class="col-desc">
+                        <input type="text" class="desc-input" id="desc-${item.id}" value="${item.description || ''}">
+                    </td>
+                    <td class="col-action">
+                        <button class="btn btn-red" onclick="updatePrice('${item.id}')">Update</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById('prices-card').style.display = 'block';
+        }
+
+        function updatePrice(id) {
+            const url = localStorage.getItem('sae_b2c_api_url');
+            const password = localStorage.getItem('sae_b2c_api_password');
+
+            if (!url || !password) {
+                alert("Silakan lengkapi dan simpan konfigurasi API terlebih dahulu");
+                return;
+            }
+
+            const basePrice = parseInt(document.getElementById(`base-${id}`).value) || 0;
+            const priceWithNasiInput = document.getElementById(`nasi-${id}`);
+            const priceWithNasi = priceWithNasiInput.disabled ? 0 : (parseInt(priceWithNasiInput.value) || 0);
+            const description = document.getElementById(`desc-${id}`).value.trim();
+
+            addLog(`Mengupdate ${id}... Mengirim POST request...`);
+
+            const payload = {
+                password: password,
+                sheet: "aqiqah_prices",
+                id: id,
+                data: {
+                    basePrice: basePrice,
+                    priceWithNasi: priceWithNasi,
+                    description: description
+                }
+            };
+
+            fetch(url, {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'text/plain' // Required to prevent CORS options preflight issues in Apps Script web apps
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(res => {
+                if (!res.ok) throw new Error("Koneksi gagal");
+                return res.json();
+            })
+            .then(resData => {
+                if (resData.error) {
+                    throw new Error(resData.error);
+                }
+                addLog(`Sukses! Harga ${id} berhasil diperbarui di Google Sheets.`, "info");
+                alert(`Harga ${id} berhasil diperbarui!`);
+            })
+            .catch(err => {
+                addLog(`Gagal mengupdate ${id}: ${err.message}`, "error");
+                alert(`Gagal mengupdate harga: ${err.message}`);
+            });
+        }
+    </script>
+</body>
+</html>

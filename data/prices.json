@@ -1,0 +1,99 @@
+{
+  "aqiqah": {
+    "title": "Paket Aqiqah",
+    "packages": [
+      {
+        "id": "A",
+        "name": "Paket A",
+        "basePrice": 2000000,
+        "nasiKotak": 0,
+        "priceWithNasi": 2480000,
+        "description": "Sate 200 tusuk + Gulai 40 porsi"
+      },
+      {
+        "id": "B",
+        "name": "Paket B",
+        "basePrice": 2300000,
+        "nasiKotak": 0,
+        "priceWithNasi": 3020000,
+        "description": "Sate 300 tusuk + Gulai 60 porsi"
+      },
+      {
+        "id": "C",
+        "name": "Paket C (Rekomendasi)",
+        "basePrice": 2700000,
+        "nasiKotak": 0,
+        "priceWithNasi": 3540000,
+        "description": "Sate 400 tusuk + Gulai 70 porsi"
+      },
+      {
+        "id": "D",
+        "name": "Paket D",
+        "basePrice": 3000000,
+        "nasiKotak": 0,
+        "priceWithNasi": 4080000,
+        "description": "Sate 500 tusuk + Gulai 90 porsi"
+      },
+      {
+        "id": "E",
+        "name": "Paket E",
+        "basePrice": 3500000,
+        "nasiKotak": 0,
+        "priceWithNasi": 4700000,
+        "description": "Sate 600 tusuk + Gulai 100 porsi"
+      }
+    ],
+    "additional": {
+      "olah_kulit": 150000,
+      "nasi_box_custom": 15000
+    }
+  },
+  "qurban": {
+    "title": "Paket Qurban",
+    "kambing": [
+      {
+        "id": "kg-jantan",
+        "animal": "Kambing",
+        "variant": "Jantan Satuan",
+        "price": 3000000,
+        "promo": null,
+        "featured": false
+      },
+      {
+        "id": "kg-bundle",
+        "animal": "Kambing",
+        "variant": "Bundle Jantan + Betina",
+        "price": 3750000,
+        "promo": "Promo FREE Betina!",
+        "featured": true
+      }
+    ],
+    "domba": [
+      {
+        "id": "db-jantan",
+        "animal": "Domba",
+        "variant": "Jantan Satuan",
+        "price": 2000000,
+        "promo": null,
+        "featured": false
+      },
+      {
+        "id": "db-bundle",
+        "animal": "Domba",
+        "variant": "Bundle Jantan + Betina",
+        "price": 3500000,
+        "promo": "Promo FREE Betina!",
+        "featured": false
+      }
+    ]
+  },
+  "company": {
+    "name": "SAE Aqiqah",
+    "tagline": "Sempurna Syariatnya, Premium Sajiannya",
+    "whatsapp": "6282230611299",
+    "instagram": "@sae.aqiqah",
+    "tiktok": "@saeaqiqah",
+    "address": "Jl. Raya Ketangi No. 60, Tegalgondo, Malang",
+    "foundedYear": 2003
+  }
+}
