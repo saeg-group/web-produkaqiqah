@@ -339,11 +339,16 @@
     </div>
 
     <script>
-        const DEFAULT_API_URL = "https://script.google.com/macros/s/AKfycby_F05MY802tH3lZ1c3aCpXJCGVd9W0r0IRbMZxhtJZcSzdQLWj2y9pnTbx7cHf_Pk/exec";
+        const DEFAULT_API_URL = "https://script.google.com/macros/s/AKfycbye3JuTWmzAEbdhyEB4Oj63dVIwyq3kpersrkLocYFQT-qDqWe-guI3LrMjZDnx8uf9/exec";
 
         // Load configuration on start
         document.addEventListener('DOMContentLoaded', () => {
-            const savedUrl = localStorage.getItem('sae_b2c_api_url') || DEFAULT_API_URL;
+            let savedUrl = localStorage.getItem('sae_b2c_api_url');
+            // Migrate old URL to new default URL
+            if (!savedUrl || savedUrl === "https://script.google.com/macros/s/AKfycby_F05MY802tH3lZ1c3aCpXJCGVd9W0r0IRbMZxhtJZcSzdQLWj2y9pnTbx7cHf_Pk/exec") {
+                savedUrl = DEFAULT_API_URL;
+                localStorage.setItem('sae_b2c_api_url', DEFAULT_API_URL);
+            }
             const savedPass = localStorage.getItem('sae_b2c_api_password') || '';
             
             document.getElementById('api-url').value = savedUrl;
